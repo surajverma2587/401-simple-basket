@@ -4,6 +4,9 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Badge from "@mui/material/Badge";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -26,26 +29,28 @@ export const NavBar = () => {
             }}
           >
             <Button
-              // onClick event navigate to home
               onClick={() => navigate("/")}
               sx={{ my: 2, color: "white" }}
             >
               Home
             </Button>
             <Button
-              // onClick event navigate to home
               onClick={() => navigate("/products")}
               sx={{ my: 2, color: "white" }}
             >
               Products
             </Button>
-            <Button
-              // onClick event navigate to home
+          </Box>
+
+          <Box>
+            <IconButton
               onClick={() => navigate("/checkout")}
               sx={{ my: 2, color: "white" }}
             >
-              Checkout
-            </Button>
+              <Badge badgeContent={4} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
