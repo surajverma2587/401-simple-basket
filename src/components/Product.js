@@ -4,15 +4,23 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { useApp } from "../context/AppProvider";
 
-export const Product = ({ product }) => {
+export const Product = ({ product, showDelete }) => {
   const { dispatch } = useApp();
 
   const handleAddItem = () => {
     dispatch({
       type: "ADD_ITEM",
       payload: product,
+    });
+  };
+
+  const handleRemoveItem = () => {
+    dispatch({
+      type: "REMOVE_ITEM",
+      payload: product.id,
     });
   };
 
@@ -27,9 +35,15 @@ export const Product = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={handleAddItem}>
-          <AddIcon />
-        </IconButton>
+        {showDelete ? (
+          <IconButton onClick={handleRemoveItem}>
+            <RemoveIcon />
+          </IconButton>
+        ) : (
+          <IconButton onClick={handleAddItem}>
+            <AddIcon />
+          </IconButton>
+        )}
       </CardActions>
     </Card>
   );
